@@ -1,0 +1,10 @@
+[Unit]
+Description=Renew Points Home HTTPS certificate
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/opt/points-home-certbot/bin/certbot renew --cert-name points-home --quiet --deploy-hook /opt/points-home/reload-nginx.sh
+TimeoutStartSec=300
+UMask=0077

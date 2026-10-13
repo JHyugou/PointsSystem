@@ -1,0 +1,11 @@
+[Unit]
+Description=Check Points Home certificate renewal every six hours
+
+[Timer]
+OnCalendar=*-*-* 00,06,12,18:15:00
+RandomizedDelaySec=300
+Persistent=true
+Unit=points-home-cert-renew.service
+
+[Install]
+WantedBy=timers.target

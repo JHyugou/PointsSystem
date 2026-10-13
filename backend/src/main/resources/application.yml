@@ -1,0 +1,46 @@
+server:
+  address: ${SERVER_ADDRESS:127.0.0.1}
+  port: ${PORT:8080}
+  error:
+    include-message: never
+    include-stacktrace: never
+
+spring:
+  application:
+    name: points-api
+  datasource:
+    url: ${DB_URL:jdbc:h2:file:./data/points-home;DB_CLOSE_ON_EXIT=FALSE}
+    username: ${DB_USERNAME:sa}
+    password: ${DB_PASSWORD:}
+    hikari:
+      maximum-pool-size: 5
+  servlet:
+    multipart:
+      max-file-size: 3MB
+      max-request-size: 10MB
+  mail:
+    host: ${MAIL_HOST:}
+    default-encoding: UTF-8
+    port: ${MAIL_PORT:587}
+    username: ${MAIL_USERNAME:}
+    password: ${MAIL_PASSWORD:}
+    properties:
+      "[mail.smtp.auth]": true
+      "[mail.smtp.ssl.enable]": ${MAIL_SSL_ENABLED:false}
+      "[mail.smtp.starttls.enable]": ${MAIL_STARTTLS_ENABLED:true}
+      "[mail.smtp.starttls.required]": ${MAIL_STARTTLS_REQUIRED:true}
+      "[mail.smtp.connectiontimeout]": 5000
+      "[mail.smtp.timeout]": 5000
+      "[mail.smtp.writetimeout]": 5000
+
+app:
+  ai:
+    master-key: ${APP_AI_MASTER_KEY:}
+    deepseek-base-url: ${APP_DEEPSEEK_BASE_URL:https://api.deepseek.com}
+  homework:
+    storage-dir: ${APP_HOMEWORK_STORAGE_DIR:./data/homework}
+  mail:
+    mode: ${APP_MAIL_MODE:smtp}
+    from: ${MAIL_FROM:}
+  security:
+    otp-secret: ${APP_OTP_SECRET:}

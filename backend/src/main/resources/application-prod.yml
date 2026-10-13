@@ -1,0 +1,45 @@
+# Single-instance family deployment on a 2 GiB server.
+server:
+  address: 127.0.0.1
+  port: ${PORT:18080}
+  shutdown: graceful
+  forward-headers-strategy: native
+  tomcat:
+    threads:
+      min-spare: 2
+      max: 24
+    max-connections: 64
+    accept-count: 32
+    connection-timeout: 10s
+    keep-alive-timeout: 20s
+    remoteip:
+      remote-ip-header: X-Forwarded-For
+      protocol-header: X-Forwarded-Proto
+      internal-proxies: '127\.0\.0\.1|::1|0:0:0:0:0:0:0:1'
+
+spring:
+  lifecycle:
+    timeout-per-shutdown-phase: 125s
+  datasource:
+    url: ${DB_URL:jdbc:h2:file:/var/lib/points-home/data/points-home;DB_CLOSE_ON_EXIT=FALSE;CACHE_SIZE=16384}
+    hikari:
+      maximum-pool-size: 3
+      minimum-idle: 1
+      connection-timeout: 10000
+  servlet:
+    multipart:
+      location: ${APP_UPLOAD_TMP_DIR:/var/lib/points-home/tmp}
+      file-size-threshold: 0
+
+app:
+  homework:
+    storage-dir: ${APP_HOMEWORK_STORAGE_DIR:/var/lib/points-home/data/homework}
+
+logging:
+  file:
+    name: ${APP_LOG_FILE:/var/log/points-home/app.log}
+  logback:
+    rollingpolicy:
+      max-file-size: 5MB
+      max-history: 7
+      total-size-cap: 40MB

@@ -1,0 +1,15 @@
+server {
+    listen 80;
+    server_name __SERVER_IP__;
+
+    location ^~ /.well-known/acme-challenge/ {
+        root /var/lib/points-home-acme;
+        default_type text/plain;
+        try_files $uri =404;
+    }
+
+    # The API is accessible only through HTTPS, including during setup.
+    location / {
+        return 404;
+    }
+}

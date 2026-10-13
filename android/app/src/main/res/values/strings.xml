@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_limit_service_label">积分小屋 · 本机应用限制</string>
+    <string name="app_limit_service_description">由家长在本机选择受限应用。服务只识别当前应用以扣减兑换时间，并在时间用完时显示限制页面；不读取屏幕文字，不保存应用使用历史。请在积分小屋内用家长密码修改或解除限制。</string>
+    <string name="device_admin_description">增加卸载操作门槛。普通设备管理员可以从系统设置停用；只有取得整机管理权限后才支持系统级防卸载。</string>
+</resources>

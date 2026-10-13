@@ -1,0 +1,16 @@
+title = "PointsSystem secret scanning"
+
+[extend]
+useDefault = true
+
+# Exact deterministic keys used only by the isolated in-memory Spring tests.
+# Both the source path and the complete fixture value must match.
+[[allowlists]]
+description = "Deterministic test-only OTP and AES fixtures"
+condition = "AND"
+paths = ['''^backend/src/test/java/com/pointshome/api/(auth/AccountFlowTest|ai/DeepSeekSettingsFlowTest|points/PointFlowTest|rewards/RewardFlowTest|homework/HomeworkFlowTest)\.java$''']
+regexTarget = "secret"
+regexes = [
+  '''^0123456789abcdef0123456789abcdef$''',
+  '''^MDEyMzQ1Njc4OWFiY2RlZjAxMjM0NTY3ODlhYmNkZWY=$''',
+]

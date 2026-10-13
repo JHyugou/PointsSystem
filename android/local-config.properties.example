@@ -1,0 +1,3 @@
+# Copy to local-config.properties and enter your own HTTPS backend URL.
+# local-config.properties is excluded from Git.
+releaseApiUrl=https://api.example.com

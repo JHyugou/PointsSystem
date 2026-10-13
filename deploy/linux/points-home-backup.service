@@ -1,0 +1,8 @@
+[Unit]
+Description=Consistent backup of Points Home data and secrets
+
+[Service]
+Type=oneshot
+ExecStart=/opt/points-home/backup.sh
+TimeoutStartSec=600
+UMask=0077

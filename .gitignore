@@ -1,0 +1,46 @@
+# IDE and local machine
+.idea/
+.vscode/
+*.iml
+
+# Maven
+backend/target/
+backend/build-test.log
+backend/data/*
+!backend/data/.gitkeep
+
+# Gradle and Android
+android/.gradle/
+android/.kotlin/
+android/**/build/
+android/local.properties
+android/local-config.properties
+android/captures/
+android/android-build.log
+
+# Local secrets
+.env
+.env.*
+!.env.example
+!.env.*.example
+*.keystore
+*.jks
+*.p12
+*.pfx
+*.key
+*.pem
+*signing*.properties
+
+# Runtime data, logs and generated packages
+*.log
+*.mv.db
+*.trace.db
+*.h2.db
+*.apk
+*.aab
+*.hprof
+*.heapdump
+
+# Deployment bundles and private connection state
+deploy/dist/
+deploy/private/

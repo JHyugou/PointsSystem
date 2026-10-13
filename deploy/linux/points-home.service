@@ -1,0 +1,30 @@
+[Unit]
+Description=Points Home API
+Wants=network-online.target
+After=network-online.target
+StartLimitIntervalSec=300
+StartLimitBurst=5
+
+[Service]
+Type=simple
+User=pointshome
+Group=pointshome
+WorkingDirectory=/var/lib/points-home
+EnvironmentFile=/etc/points-home/backend.env
+ExecStart=/usr/lib/jvm/jre-17-openjdk/bin/java -Xms96m -Xmx384m -XX:MaxMetaspaceSize=192m -XX:MaxDirectMemorySize=64m -Xss512k -XX:+ExitOnOutOfMemoryError -Djava.awt.headless=true -Djava.io.tmpdir=/var/lib/points-home/tmp -jar /opt/points-home/points-api.jar --spring.profiles.active=prod
+Restart=on-failure
+RestartSec=10
+TimeoutStopSec=150
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/points-home /var/log/points-home
+MemoryAccounting=true
+MemoryMax=850M
+TasksMax=80
+LimitNOFILE=4096
+
+[Install]
+WantedBy=multi-user.target
